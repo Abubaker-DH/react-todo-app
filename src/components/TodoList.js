@@ -7,7 +7,7 @@ function TodoList() {
 
   const addTodo = (todo) => {
     // check if todo is empty
-    if (todo.text || /^\s*$/.test(todo.text)) {
+    if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
 
@@ -31,7 +31,7 @@ function TodoList() {
   };
 
   const updateTodo = (id, newValue) => {
-    if (newValue.text || /^\s*$/.test(newValue.text)) {
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
     }
 
@@ -39,7 +39,8 @@ function TodoList() {
   };
 
   return (
-    <div>
+    <>
+      <h1>What's the Plan for Today?</h1>
       <TodoForm onSubmit={addTodo} />
       <Todo
         todos={todos}
@@ -47,7 +48,7 @@ function TodoList() {
         removeTodo={removeTodo}
         updateTodo={updateTodo}
       />
-    </div>
+    </>
   );
 }
 

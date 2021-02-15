@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function TodoForm() {
-  const [input, setInput] = useState(
-    this.props.edit ? this.props.edit.value : ""
-  );
+function TodoForm(props) {
+  const [input, setInput] = useState(props.edit ? props.edit.value : "");
 
-  const inputRef = useEffect(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     inputRef.current.focus();
@@ -19,7 +17,7 @@ function TodoForm() {
     e.preventDefault();
 
     // create random ID & get the input
-    this.props.onSubmit({
+    props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
     });
@@ -29,7 +27,7 @@ function TodoForm() {
 
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
-      {this.props.edit ? (
+      {props.edit ? (
         <>
           <input
             type="text"
